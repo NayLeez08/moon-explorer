@@ -1,26 +1,455 @@
-@import "tailwindcss";
+/*NASA EXPLORER-DISEÑO GENERAL*/
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #020617;
+  --bg-secondary: #071126;
+  --card: rgba(10, 25, 52, 0.78);
+  --text: #f8fafc;
+  --text-secondary: #b9c7dc;
+  --text-muted: #7f91ad;
+  --blue: #38bdf8;
+  --blue-dark: #2563eb;
+  --purple: #8b5cf6;
+  --purple-dark: #6d28d9;
+  --border: rgba(96, 165, 250, 0.25);
+  --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/*RESET*/
+
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
   font-family: Arial, Helvetica, sans-serif;
+  background: radial-gradient(
+    circle at 50% 0%,
+    #101d42 0%,
+    #020617 45%,
+    #01030b 100%
+  );
+
+  background-attachment: fixed;
+}
+
+/*NAVBAR*/
+
+.navbar {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(2, 6, 23, 0.88);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+.navbar-container {
+  width: min(1200px, calc(100% - 40px));
+  min-height: 78px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  text-decoration: none;
+  font-size: 1.7rem;
+  font-weight: 800;
+}
+
+.navbar-logo:first-letter {
+  font-size: 1.9rem;
+}
+
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+}
+
+.navbar-link {
+  position: relative;
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.navbar-link:hover {
+  color: var(--blue);
+}
+
+.navbar-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -9px;
+  width: 0;
+  height: 2px;
+  background: var(--blue);
+  transition: width 0.2s ease;
+}
+
+.navbar-link:hover::after {
+  width: 100%;
+}
+
+/*PAGINA GENERAL*/
+
+.page {
+  width: 100%;
+  min-height: calc(100vh - 78px);
+  padding-bottom: 80px;
+}
+
+/*HERO INICIO*/
+
+.home-hero {
+  width: min(1100px, calc(100% - 40px));
+  margin: auto;
+  padding: 75px 20px 50px;
+  text-align: center;
+}
+
+.hero-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  filter: drop-shadow(0 0 20px rgba(96, 165, 250, 0.5));
+}
+
+.hero-small {
+  margin: 0 0 14px;
+  color: var(--blue);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 5px;
+}
+
+.home-hero h1 {
+  margin: 0;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -2px;
+  background: linear-gradient(90deg, #ffffff, #93c5fd);
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.home-hero p:last-child {
+  margin: 22px auto 0;
+  max-width: 700px;
+  color: var(--text-secondary);
+  font-size: 1.15rem;
+  line-height: 1.6;
+}
+
+/*CONTENIDO INICIO*/
+
+.home-content {
+  width: min(1200px, calc(100% - 40px));
+  margin: auto;
+}
+
+/*RESPONSIVE GENERAL*/
+
+@media (max-width: 650px) {
+  .navbar-container {
+    min-height: 70px;
+    width: calc(100% - 25px);
+  }
+
+  .navbar-logo {
+    font-size: 1.2rem;
+  }
+
+  .navbar-menu {
+    gap: 15px;
+  }
+
+  .navbar-link {
+    font-size: 0.82rem;
+  }
+
+  .home-hero {
+    padding: 50px 10px 35px;
+  }
+
+  .hero-small {
+    letter-spacing: 2px;
+  }
+
+  .home-hero h1 {
+    font-size: 2.7rem;
+  }
+
+  .home-content {
+    width: calc(100% - 25px);
+  }
+}
+
+/*INICIO - NASA EXPLORER*/
+
+.home-page {
+  width: 100%;
+  min-height: calc(100vh - 78px);
+}
+
+/*HERO*/
+
+.home-hero-new {
+  width: min(1000px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 90px 20px 75px;
+  text-align: center;
+}
+
+.home-hero-icon {
+  font-size: 4rem;
+  margin-bottom: 18px;
+  filter: drop-shadow(0 0 25px rgba(56, 189, 248, 0.5));
+}
+
+.home-hero-small {
+  margin: 0 0 15px;
+  color: var(--blue);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 5px;
+}
+
+.home-hero-new h1 {
+  margin: 0;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -3px;
+  background: linear-gradient(90deg, #ffffff, #93c5fd, #c4b5fd);
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.home-hero-description {
+  max-width: 700px;
+  margin: 25px auto 0;
+  color: var(--text-secondary);
+  font-size: 1.15rem;
+  line-height: 1.7;
+}
+
+/*BOTÓN PRINCIPAL*/
+
+.home-explore-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 32px;
+  padding: 14px 25px;
+  border-radius: 12px;
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  background: linear-gradient(135deg, #2563eb, #38bdf8);
+
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.3);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.home-explore-button:hover {
+  transform: translateY(-3px);
+
+  box-shadow: 0 18px 40px rgba(37, 99, 235, 0.45);
+}
+
+/*SECCIÓN UNIVERSO*/
+
+.space-section {
+  width: min(1200px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 35px 0 70px;
+}
+
+.space-section-title,
+.facts-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.space-section-title > span,
+.facts-header > span {
+  font-size: 2.5rem;
+}
+
+.space-section-title p,
+.facts-header p {
+  margin: 0 0 5px;
+  color: var(--blue);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.space-section-title h2,
+.facts-header h2 {
+  margin: 0;
+  color: white;
+  font-size: 1.8rem;
+}
+
+/*TARJETAS*/
+
+.space-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.space-card {
+  padding: 30px;
+  border-radius: 20px;
+  background: linear-gradient(
+    145deg,
+    rgba(13, 35, 69, 0.85),
+    rgba(5, 16, 35, 0.9)
+  );
+
+  border: 1px solid var(--border);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.space-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(56, 189, 248, 0.55);
+}
+
+.space-card-icon {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  border-radius: 16px;
+  font-size: 1.8rem;
+  background: linear-gradient(135deg, #2563eb, #6d28d9);
+
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
+}
+
+.space-card h3 {
+  margin: 0 0 12px;
+  color: white;
+  font-size: 1.35rem;
+}
+
+.space-card p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/*CURIOSIDADES*/
+
+.facts-section {
+  width: min(1000px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 20px 0 80px;
+}
+
+.facts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fact {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 25px;
+  border-radius: 15px;
+  background: rgba(10, 25, 52, 0.55);
+  border: 1px solid rgba(96, 165, 250, 0.15);
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.fact:hover {
+  background: rgba(15, 35, 70, 0.75);
+  transform: translateX(5px);
+}
+
+.fact > span {
+  color: var(--blue);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.fact p {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/*RESPONSIVE INICIO*/
+
+@media (max-width: 900px) {
+  .space-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+  .space-section,
+  .facts-section {
+    width: calc(100% - 25px);
+  }
+
+  .space-section-title h2,
+  .facts-header h2 {
+    font-size: 1.4rem;
+  }
+
+  .space-section-title > span,
+  .facts-header > span {
+    font-size: 2rem;
+  }
+
+  .space-card {
+    padding: 24px;
+  }
+
+  .fact {
+    align-items: flex-start;
+
+    padding: 18px;
+  }
 }

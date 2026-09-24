@@ -1,0 +1,774 @@
+/*ACERCA DE - NUEVO DISEÑO*/
+
+.about-new-page {
+  width: 100%;
+  min-height: calc(100vh - 78px);
+  padding-bottom: 80px;
+  overflow: hidden;
+}
+
+/*HERO*/
+
+.about-new-hero {
+  position: relative;
+  width: min(1200px, calc(100% - 40px));
+  min-height: 370px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  padding: 70px 0;
+  overflow: hidden;
+}
+
+.about-hero-content {
+  position: relative;
+  z-index: 2;
+  width: 58%;
+}
+
+.about-label {
+  margin: 0 0 15px;
+  color: var(--blue);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 5px;
+}
+
+.about-hero-content h1 {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(2.8rem, 5vw, 4.8rem);
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -2px;
+}
+
+.about-hero-content h1 span {
+  display: block;
+  background: linear-gradient(90deg, #38bdf8, #60a5fa, #8b5cf6);
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.about-intro {
+  max-width: 650px;
+  margin: 22px 0 0;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+/*PLANETA DEL HERO*/
+
+.about-hero-planet {
+  position: absolute;
+  right: -30px;
+  bottom: -100px;
+  width: 480px;
+  height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12rem;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 30%,
+    #60a5fa 0%,
+    #2563eb 30%,
+    #172554 60%,
+    #020617 78%
+  );
+
+  box-shadow: 0 0 70px rgba(37, 99, 235, 0.35);
+  opacity: 0.9;
+  transform: rotate(-15deg);
+  filter: drop-shadow(0 0 30px rgba(56, 189, 248, 0.25));
+}
+
+.about-hero-planet img {
+  width: 800px;
+  height: auto;
+  object-fit: contain;
+}
+
+.about-hero-planet::before {
+  content: '';
+  position: absolute;
+  width: 620px;
+  height: 130px;
+  border: 2px solid rgba(96, 165, 250, 0.45);
+  border-radius: 50%;
+  transform: rotate(-18deg);
+}
+
+/*SECCIÓN DESCRIPCIÓN*/
+
+.about-description-section {
+  width: min(1200px, calc(100% - 40px));
+  margin: 0 auto;
+  position: relative;
+  z-index: 3;
+}
+.about-section-title {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.about-title-icon {
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 16px;
+  font-size: 1.7rem;
+  background: linear-gradient(135deg, #075985, #2563eb);
+
+  border: 1px solid rgba(56, 189, 248, 0.45);
+
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.about-title-icon:hover {
+  transform: translateY(-3px);
+
+  box-shadow: 0 12px 35px rgba(37, 99, 235, 0.45);
+}
+
+.about-section-title p {
+  margin: 0 0 5px;
+  color: var(--blue);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.about-section-title h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(1.5rem, 3vw, 1.9rem);
+  line-height: 1.2;
+  font-weight: 800;
+}
+
+/*TARJETA DESCRIPCIÓN*/
+
+.about-description-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 190px;
+  align-items: center;
+  gap: 30px;
+  min-height: 230px;
+  padding: 38px 42px;
+  overflow: hidden;
+  border-radius: 24px;
+  background: linear-gradient(
+    135deg,
+    rgba(14, 37, 72, 0.96),
+    rgba(5, 17, 38, 0.98)
+  );
+
+  border: 1px solid rgba(56, 189, 248, 0.35);
+
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.35);
+
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+.about-description-card:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(56, 189, 248, 0.5);
+
+  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.45);
+}
+
+/*BRILLOS DECORATIVOS*/
+
+.about-description-card::before {
+  content: '';
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  right: -120px;
+  top: -180px;
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    rgba(56, 189, 248, 0.13),
+    transparent 70%
+  );
+
+  pointer-events: none;
+}
+
+.about-description-card::after {
+  content: '';
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  left: -170px;
+  bottom: -180px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(139, 92, 246, 0.12),
+    transparent 70%
+  );
+
+  pointer-events: none;
+}
+
+/*TEXTO*/
+
+.about-description-text {
+  position: relative;
+  z-index: 2;
+  max-width: 850px;
+  padding-left: 22px;
+  border-left: 3px solid var(--blue);
+}
+
+.about-description-text p {
+  margin: 0 0 15px;
+  color: #cbd9ec;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.about-description-text p:last-child {
+  margin-bottom: 0;
+}
+
+/*PLANETA*/
+
+.about-planet-small {
+  position: relative;
+  z-index: 2;
+  width: 165px;
+  height: 165px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  border-radius: 50%;
+  font-size: 7.3rem;
+  background: radial-gradient(
+    circle at 35% 30%,
+    rgba(96, 165, 250, 0.35),
+    rgba(37, 99, 235, 0.13) 48%,
+    rgba(2, 6, 23, 0.2) 75%
+  );
+
+  border: 1px solid rgba(96, 165, 250, 0.3);
+
+  box-shadow: 0 0 35px rgba(37, 99, 235, 0.3);
+
+  filter: drop-shadow(0 0 15px rgba(96, 165, 250, 0.25));
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.about-description-card:hover .about-planet-small {
+  transform: scale(1.05) rotate(3deg);
+  box-shadow: 0 0 50px rgba(37, 99, 235, 0.4);
+}
+
+/* Órbita */
+
+.about-planet-small::before {
+  content: '';
+  position: absolute;
+  width: 190px;
+  height: 58px;
+  border: 2px solid rgba(139, 92, 246, 0.5);
+  border-radius: 50%;
+  transform: rotate(-20deg);
+}
+
+/* Segunda órbita */
+
+.about-planet-small::after {
+  content: '';
+  position: absolute;
+  width: 175px;
+  height: 45px;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 50%;
+  transform: rotate(25deg);
+}
+
+/*RESPONSIVE*/
+
+@media (max-width: 900px) {
+  .about-description-card {
+    grid-template-columns: 1fr;
+    text-align: left;
+    padding: 32px;
+  }
+
+  .about-planet-small {
+    margin: 10px auto 0;
+  }
+}
+
+@media (max-width: 650px) {
+  .about-description-section {
+    width: calc(100% - 25px);
+  }
+
+  .about-section-title {
+    gap: 12px;
+  }
+
+  .about-title-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.4rem;
+  }
+
+  .about-section-title h2 {
+    font-size: 1.35rem;
+  }
+
+  .about-description-card {
+    min-height: auto;
+    padding: 25px 22px;
+    border-radius: 20px;
+  }
+
+  .about-description-text {
+    padding-left: 16px;
+  }
+
+  .about-description-text p {
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+
+  .about-planet-small {
+    width: 120px;
+    height: 120px;
+    font-size: 3.8rem;
+  }
+
+  .about-planet-small::before {
+    width: 145px;
+    height: 45px;
+  }
+
+  .about-planet-small::after {
+    width: 135px;
+    height: 35px;
+  }
+}
+
+/*CARACTERÍSTICAS*/
+
+.about-features {
+  width: min(1200px, calc(100% - 40px));
+  margin: 25px auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.about-feature-card {
+  min-height: 155px;
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  padding: 25px;
+  border-radius: 19px;
+  background: linear-gradient(
+    145deg,
+    rgba(13, 35, 69, 0.8),
+    rgba(5, 16, 35, 0.9)
+  );
+
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.about-feature-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(56, 189, 248, 0.55);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+.purple-feature {
+  border-color: rgba(139, 92, 246, 0.4);
+}
+
+.purple-feature:hover {
+  border-color: rgba(139, 92, 246, 0.7);
+}
+
+.about-feature-icon {
+  width: 58px;
+  height: 58px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.blue-icon {
+  background: linear-gradient(135deg, #1d4ed8, #38bdf8);
+
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
+}
+
+.purple-icon {
+  background: linear-gradient(135deg, #6d28d9, #8b5cf6);
+
+  color: white;
+  box-shadow: 0 10px 25px rgba(109, 40, 217, 0.25);
+}
+
+.about-feature-card h3 {
+  margin: 3px 0 10px;
+  color: #ffffff;
+  font-size: 1.1rem;
+}
+
+.about-feature-card p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* TECNOLOGÍAS UTILIZADAS */
+
+.about-tech-section {
+  width: min(1100px, calc(100% - 40px));
+
+  margin: 70px auto 0;
+
+  padding: 45px 40px 50px;
+
+  text-align: center;
+
+  border-radius: 24px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(10, 27, 55, 0.75),
+    rgba(4, 13, 30, 0.9)
+  );
+
+  border: 1px solid rgba(56, 189, 248, 0.18);
+
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+/* TÍTULO */
+
+.about-tech-title {
+  margin-bottom: 40px;
+}
+
+.about-tech-title p {
+  margin: 0 0 10px;
+
+  color: var(--blue);
+
+  font-size: 0.7rem;
+
+  font-weight: 800;
+
+  letter-spacing: 5px;
+}
+
+.about-tech-title h2 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: clamp(2rem, 4vw, 2.7rem);
+
+  font-weight: 800;
+
+  line-height: 1.15;
+}
+
+/* Línea decorativa */
+
+.about-tech-title::after {
+  content: '';
+
+  display: block;
+
+  width: 70px;
+
+  height: 3px;
+
+  margin: 18px auto 0;
+
+  border-radius: 20px;
+
+  background: linear-gradient(90deg, #38bdf8, #8b5cf6);
+
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.45);
+}
+
+/* LISTA */
+
+.about-tech-list {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 18px;
+
+  max-width: 900px;
+
+  margin: 0 auto;
+}
+
+/* TARJETAS */
+
+.about-tech-list span {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-height: 68px;
+
+  padding: 16px 20px;
+
+  border-radius: 16px;
+
+  color: #dbeafe;
+
+  font-size: 1rem;
+
+  font-weight: 700;
+
+  background: linear-gradient(
+    145deg,
+    rgba(15, 35, 69, 0.9),
+    rgba(5, 16, 35, 0.95)
+  );
+
+  border: 1px solid rgba(96, 165, 250, 0.25);
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+
+  overflow: hidden;
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+/* Brillo interno */
+
+.about-tech-list span::before {
+  content: '';
+
+  position: absolute;
+
+  top: 0;
+
+  left: -100%;
+
+  width: 100%;
+
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(56, 189, 248, 0.08),
+    transparent
+  );
+
+  transition: left 0.5s ease;
+}
+
+/* Estrella decorativa */
+
+.about-tech-list span::after {
+  content: '✦';
+
+  position: absolute;
+
+  top: 7px;
+
+  right: 10px;
+
+  color: rgba(56, 189, 248, 0.55);
+
+  font-size: 0.6rem;
+}
+
+/* Hover */
+
+.about-tech-list span:hover {
+  transform: translateY(-5px);
+
+  color: #ffffff;
+
+  border-color: rgba(56, 189, 248, 0.6);
+
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.25);
+}
+
+.about-tech-list span:hover::before {
+  left: 100%;
+}
+
+/* TARJETA NASA APOD */
+
+.about-tech-list span:nth-child(4) {
+  border-color: rgba(139, 92, 246, 0.35);
+
+  background: linear-gradient(
+    145deg,
+    rgba(50, 30, 90, 0.4),
+    rgba(10, 20, 45, 0.95)
+  );
+}
+
+.about-tech-list span:nth-child(4):hover {
+  border-color: rgba(139, 92, 246, 0.7);
+
+  box-shadow: 0 12px 30px rgba(139, 92, 246, 0.25);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .about-tech-section {
+    width: calc(100% - 40px);
+
+    padding: 40px 30px 45px;
+  }
+
+  .about-tech-list {
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 15px;
+
+    max-width: 650px;
+  }
+}
+
+@media (max-width: 650px) {
+  .about-tech-section {
+    width: calc(100% - 25px);
+
+    margin-top: 55px;
+
+    padding: 35px 20px 40px;
+
+    border-radius: 20px;
+  }
+
+  .about-tech-title {
+    margin-bottom: 30px;
+  }
+
+  .about-tech-title p {
+    font-size: 0.65rem;
+
+    letter-spacing: 3px;
+  }
+
+  .about-tech-title h2 {
+    font-size: 1.9rem;
+  }
+
+  .about-tech-title::after {
+    width: 55px;
+
+    height: 2px;
+
+    margin-top: 15px;
+  }
+
+  .about-tech-list {
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+
+    width: 100%;
+  }
+
+  .about-tech-list span {
+    width: 100%;
+
+    min-height: 60px;
+
+    padding: 15px 18px;
+
+    font-size: 0.95rem;
+  }
+}
+
+.about-tech-title {
+  margin-bottom: 40px;
+}
+
+/*FRASE FINAL*/
+
+.about-final {
+  width: min(1200px, calc(100% - 40px));
+  margin: 55px auto 0;
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  padding: 25px;
+  border-radius: 18px;
+  background: linear-gradient(
+    135deg,
+    rgba(76, 29, 149, 0.35),
+    rgba(30, 64, 175, 0.25)
+  );
+
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+.about-final span {
+  color: #facc15;
+  font-size: 1.4rem;
+}
+
+.about-final p {
+  margin: 0;
+  color: #e2e8f0;
+  font-size: 1rem;
+  font-style: italic;
+  text-align: center;
+}

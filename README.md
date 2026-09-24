@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 NASA Explorer
 
-## Getting Started
+NASA Explorer es una aplicación web desarrollada como proyecto de
+Programación Web Avanzada.
 
-First, run the development server:
+La aplicación permite explorar imágenes astronómicas proporcionadas
+por la NASA mediante la API pública NASA APOD
+(Astronomy Picture of the Day).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+El proyecto busca ofrecer una experiencia sencilla, visual e
+interactiva para consultar información relacionada con el universo.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🌌 Funcionalidades
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 🏠 Página de inicio con información sobre el universo.
+- 🔭 Consulta de la imagen astronómica del día.
+- 📅 Búsqueda de imágenes astronómicas por fecha.
+- 🎲 Consulta de imágenes aleatorias.
+- 🖼️ Visualización de imágenes proporcionadas por NASA.
+- 🔍 Visualización de imágenes en alta definición cuando están disponibles.
+- 📖 Descripción e información de cada imagen.
+- ⏳ Indicador de carga mientras se consulta la API.
+- ⚠️ Manejo de errores durante las peticiones.
+- 📱 Diseño adaptable a dispositivos móviles, tablets y computadoras.
+- ℹ️ Página "Acerca de" con información del proyecto y tecnologías utilizadas.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🛰️ API utilizada
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+El proyecto utiliza la API pública:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**NASA APOD - Astronomy Picture of the Day**
 
-## Deploy on Vercel
+La API proporciona información astronómica acompañada de imágenes
+o contenido multimedia.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+La aplicación realiza las peticiones desde una ruta de API propia
+del proyecto para mantener la clave de NASA protegida.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🛠️ Tecnologías utilizadas
+
+- Next.js
+- React
+- TypeScript
+- CSS
+- NASA APOD API
+- Vercel
+- Git
+- GitHub
+
+---
+
+## 📂 Estructura del proyecto
+
+```text
+moon-explorer/
+│
+├── app/
+│   ├── api/
+│   │   └── apod/
+│   │       └── route.ts
+│   │
+│   ├── acerca/
+│   │   ├── page.tsx
+│   │   └── acerca.css
+│   │
+│   ├── explorar/
+│   │   ├── page.tsx
+│   │   └── explorar.css
+│   │
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+│
+├── components/
+│   ├── ApodCard.tsx
+│   ├── Loading.tsx
+│   └── ErrorMessage.tsx
+│
+├── public/
+│
+├── .env.local
+├── .gitignore
+├── package.json
+└── README.md
