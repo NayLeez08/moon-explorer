@@ -3,8 +3,8 @@ export default function AcercaPage() {
   return (
     <main className='about-new-page'>
       {' '}
-      /*El main contiene todo el contenido de la página y la clase
-      about-new-page permite darle diseño mediante CSS.*/
+      {/*El main contiene todo el contenido de la página y la clase
+      about-new-page permite darle diseño mediante CSS.*/}
       {/* HERO */}
       <section className='about-new-hero'>
         <div className='about-hero-content'>

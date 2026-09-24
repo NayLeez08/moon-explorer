@@ -1,19 +1,19 @@
-'use client' /*le indica a Next.js que ese componente se ejecuta en el cliente */
-/*se usa en la página de Explorar porque el usuario puede seleccionar fechas y realizar consultas */
+'use client' /* le indica a Next.js que ese componente se ejecuta en el cliente */
+/* se usa en la página de Explorar porque el usuario puede seleccionar fechas y realizar consultas */
 
-/*Importaciones */
+/* IMPORTACIONES */
 import { useState } from 'react'
-import ApodCard from '@/components/ApodCard' /*para mostrar la información obtenida de NASA. */
+import ApodCard from '@/components/ApodCard' /* para mostrar la información obtenida de NASA. */
 import Loading from '@/components/Loading'
 import ErrorMessage from '@/components/ErrorMessage'
 
-/*define qué información esperamos recibir de NASA APOD. */
+/* define qué información esperamos recibir de NASA APOD. */
 interface ApodData {
   date: string
   title: string
   explanation: string
   url: string
-  hdurl?: string /*que esas propiedades son opcionales. */
+  hdurl?: string /* propiedad opcional */
   media_type: string
   copyright?: string
 }
@@ -22,22 +22,36 @@ export default function ExplorarPage() {
   const [fecha, setFecha] = useState('')
   const [apod, setApod] = useState<ApodData | null>(
     null,
-  ) /*guarda la información recibida de NASA. */
+  ) /* guarda la información recibida de NASA. */
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
-  /*BUSCAR POR FECHA*/
+  /* guarda cuál fue la última acción realizada */
+  const [ultimaAccion, setUltimaAccion] = useState<
+    'fecha' | 'aleatoria' | null
+  >(null)
+
+  /* BUSCAR POR FECHA */
   const buscarPorFecha = async () => {
     if (!fecha) {
       setError('Selecciona una fecha.')
       return
     }
 
-    const fechaMinima = '1995-06-16'
-    const fechaMaxima = new Date().toISOString().split('T')[0]
+    /* guardar la última acción realizada */
+    setUltimaAccion('fecha')
 
-    // Verificar que la fecha esté dentro del rango permitido
+    const fechaMinima = '1995-06-16'
+
+    /* obtener la fecha actual local */
+    const hoy = new Date()
+
+    const fechaMaxima = `${hoy.getFullYear()}-${String(
+      hoy.getMonth() + 1,
+    ).padStart(2, '0')}-${String(hoy.getDate()).padStart(2, '0')}`
+
+    /* verificar que la fecha esté dentro del rango permitido */
     if (fecha < fechaMinima || fecha > fechaMaxima) {
       setApod(null)
       setError('No fue posible obtener la imagen para esa fecha.')
@@ -67,14 +81,17 @@ export default function ExplorarPage() {
     }
   }
 
-  /*IMAGEN ALEATORIA*/
+  /* IMAGEN ALEATORIA */
   const imagenAleatoria = async () => {
+    /* guardar la última acción realizada */
+    setUltimaAccion('aleatoria')
+
     try {
       setLoading(true)
       setError('')
       setApod(null)
 
-      // NASA APOD comenzó el 16 de junio de 1995
+      /* NASA APOD comenzó el 16 de junio de 1995 */
       const inicio = new Date('1995-06-16T00:00:00')
 
       const hoy = new Date()
@@ -83,54 +100,71 @@ export default function ExplorarPage() {
 
       const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24))
 
-      // Elegir un día aleatorio
-      const diasAleatorios = Math.floor(Math.random() * dias)
+      /* intentar encontrar una imagen hasta 5 veces */
+      for (let intento = 0; intento < 5; intento++) {
+        /* elegir un día aleatorio */
+        const diasAleatorios = Math.floor(Math.random() * (dias + 1))
 
-      const fechaAleatoria = new Date(
-        inicio.getTime() + diasAleatorios * (1000 * 60 * 60 * 24),
-      )
-
-      const año = fechaAleatoria.getFullYear()
-
-      const mes = String(fechaAleatoria.getMonth() + 1).padStart(2, '0')
-
-      const dia = String(fechaAleatoria.getDate()).padStart(2, '0')
-
-      const fechaFormateada = `${año}-${mes}-${dia}`
-
-      const response = await fetch(`/api/apod?date=${fechaFormateada}`)
-
-      if (!response.ok) {
-        const errorData = await response
-          .json()
-          .catch(
-            () => null,
-          ) /*evita que falle nuevamente si la respuesta no contiene JSON válido. */
-
-        console.error('Error de la API:', {
-          status: response.status,
-          data: errorData,
-        })
-
-        throw new Error(
-          errorData?.error ||
-            `No se pudo obtener la imagen aleatoria. Código: ${response.status}`,
+        const fechaAleatoria = new Date(
+          inicio.getTime() + diasAleatorios * (1000 * 60 * 60 * 24),
         )
+
+        const año = fechaAleatoria.getFullYear()
+
+        const mes = String(fechaAleatoria.getMonth() + 1).padStart(2, '0')
+
+        const dia = String(fechaAleatoria.getDate()).padStart(2, '0')
+
+        const fechaFormateada = `${año}-${mes}-${dia}`
+
+        const response = await fetch(`/api/apod?date=${fechaFormateada}`)
+
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => null)
+
+          console.error('Error de la API:', {
+            status: response.status,
+            data: errorData,
+          })
+
+          throw new Error(
+            errorData?.error ||
+              `No se pudo obtener la imagen aleatoria. Código: ${response.status}`,
+          )
+        }
+
+        const data = await response.json()
+
+        /* si NASA devuelve un video, intentar otra fecha */
+        if (data.media_type !== 'image') {
+          continue
+        }
+
+        /* si encontramos una imagen, mostrarla */
+        setApod(data)
+        return
       }
 
-      const data = await response.json()
-      if (data.media_type !== 'image') {
-        return imagenAleatoria()
-      }
-      setApod(data)
+      /* si después de varios intentos no se encontró una imagen */
+      throw new Error(
+        'No se encontró una imagen disponible después de varios intentos.',
+      )
     } catch (error) {
       console.error(error)
 
       setError('No fue posible cargar la imagen aleatoria.')
     } finally {
-      /*se ejecuta tanto si la petición funciona como si falla. */
+      /* se ejecuta tanto si la petición funciona como si falla */
       setLoading(false)
     }
+  }
+
+  /* INTENTAR NUEVAMENTE */
+  const reintentar = () => {
+    setError('')
+    setApod(null)
+    setFecha('')
+    setUltimaAccion(null)
   }
 
   return (
@@ -168,6 +202,7 @@ export default function ExplorarPage() {
             <span className='date-range'>
               📅 Disponible del 16 de junio de 1995 hasta hoy
             </span>
+
             <div className='search-form'>
               <input
                 type='date'
@@ -175,7 +210,11 @@ export default function ExplorarPage() {
                 onChange={(e) => setFecha(e.target.value)}
               />
 
-              <button onClick={buscarPorFecha}>🔎 Buscar</button>
+              <button onClick={buscarPorFecha} disabled={loading}>
+                {loading && ultimaAccion === 'fecha'
+                  ? '🔄 Buscando...'
+                  : '🔎 Buscar'}
+              </button>
             </div>
           </div>
         </div>
@@ -194,28 +233,20 @@ export default function ExplorarPage() {
               onClick={imagenAleatoria}
               disabled={loading}
             >
-              {loading ? '🔄 Buscando...' : '🎲 Explorar imagen aleatoria'}
+              {loading && ultimaAccion === 'aleatoria'
+                ? '🔄 Buscando...'
+                : '🎲 Explorar imagen aleatoria'}
             </button>
           </div>
         </div>
       </section>
 
       {/* RESULTADOS */}
-
       <section className='explore-result'>
         {loading && <Loading />}
 
         {!loading && error && (
-          <ErrorMessage
-            message={error}
-            onRetry={() => {
-              if (fecha) {
-                buscarPorFecha()
-              } else {
-                imagenAleatoria()
-              }
-            }}
-          />
+          <ErrorMessage message={error} onRetry={reintentar} />
         )}
 
         {!loading && !error && apod && <ApodCard apod={apod} />}
